@@ -1,13 +1,10 @@
 {
-  "name": "@bun913/playwright-testrail-reporter",
-  "author": "bun913",
-  "publishConfig": {
-    "access": "public"
-  },
-  "homepage": "https://github.com/bun913/playwright-testrail-reporter",
-  "description": "A Playwright reporter that integrates with TestRail to report test results.",
+  "name": "@alhajiry/playwright-testrail-reporter",
+  "author": "alhajiry",
+  "homepage": "https://github.com/alhajiry/playwright-testrail-reporter",
+  "description": "Fork of @bun913/playwright-testrail-reporter with support for multiple TestRail case IDs per test title.",
   "private": false,
-  "version": "0.10.0",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.es.js",
   "scripts": {
