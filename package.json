@@ -11,6 +11,7 @@
   "type": "module",
   "main": "./dist/index.es.js",
   "scripts": {
+    "prepare": "tsc && vite build",
     "dev": "vite",
     "build": "tsc && vite build",
     "format": "biome format --write ./src",
