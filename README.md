@@ -1,12 +1,5 @@
 # Playwright TestRail Reporter
 
-> **This is a fork of [@bun913/playwright-testrail-reporter](https://github.com/bun913/playwright-testrail-reporter) by [bun913](https://github.com/bun913).**
-> Original npm package: [@bun913/playwright-testrail-reporter](https://www.npmjs.com/package/@bun913/playwright-testrail-reporter)
->
-> **Changes in this fork:**
->
-> - Support multiple TestRail case IDs in a single test title (e.g. `C165393 C165376 Test description`)
-
 ## Overview
 
 This project is a custom reporter for Playwright that integrates test results directly with TestRail. It enables automatic updating of test results in TestRail based on the outcomes of Playwright test runs.
@@ -58,29 +51,15 @@ For tests with matching TestRail case IDs, results will be automatically reporte
 ### Test Title Format
 
 Your test titles should include the TestRail case ID in one of these formats:
-- `C12345 Your test description`
-- `[C12345] Your test description`
-
-Multiple case IDs are supported — the same result will be reported for each:
-
-- `C12345 C67890 Your test description`
-- `[C12345] [C67890] Your test description`
-- `C12345 [C67890] Your test description`
+- "C12345 Your test description"
+- "[C12345] Your test description"
 
 ## Getting Started
 
 ### Installation
 
-This package is not published to npm. Install it directly from GitHub:
-
 ```bash
-npm install github:YOUR_USERNAME/playwright-testrail-reporter
-```
-
-Or pin to a specific commit for reproducibility:
-
-```bash
-npm install github:YOUR_USERNAME/playwright-testrail-reporter#COMMIT_SHA
+npm install --save-dev playwright-testrail-reporter
 ```
 
 ### Configuration
