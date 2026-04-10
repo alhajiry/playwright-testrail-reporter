@@ -1,22 +1,52 @@
 /**
- * Extract TestRail case ID from test title.
+ * Extract all TestRail case IDs from the beginning of a test title.
  *
- * Supports formats:
+ * Supports formats (and any mix of them):
  * - "C12345 Test description"
  * - "[C12345] Test description"
+ * - "C12345 C67890 Test description"
+ * - "[C12345] [C67890] Test description"
+ * - "C12345 [C67890] Test description"
+ *
+ * @param title The test title to extract from
+ * @returns Array of case IDs as numbers (empty if none found)
+ */
+export function extractCaseIds(title: string): number[] {
+	// Phase 1: Match the prefix of consecutive case ID tokens at the start
+	const prefixMatch = title.match(/^((?:(?:\[C\d+\]|C\d+)\s)+)/);
+	if (!prefixMatch) {
+		return [];
+	}
+
+	// Phase 2: Extract all numeric IDs from the matched prefix
+	const ids: number[] = [];
+	for (const m of prefixMatch[1].matchAll(/C(\d+)/g)) {
+		ids.push(parseInt(m[1], 10));
+	}
+	return ids;
+}
+
+/**
+ * Extract a single TestRail case ID from test title.
+ * Returns the first case ID found, or null if none.
  *
  * @param title The test title to extract from
  * @returns The case ID as a number, or null if not found
  */
 export function extractCaseId(title: string): number | null {
-	// Match "C12345" or "[C12345]" format at the beginning of the title
-	const match = title.match(/^(?:\[C(\d+)\]|C(\d+))\s/);
-	if (!match) {
-		return null;
-	}
+	const ids = extractCaseIds(title);
+	return ids.length > 0 ? ids[0] : null;
+}
 
-	// Return the first matched group (either from [C...] or C... format)
-	return parseInt(match[1] || match[2], 10);
+/**
+ * Extract all case IDs from a Playwright test title.
+ * Tests without TestRail IDs return an empty array.
+ *
+ * @param title The test title
+ * @returns Array of case IDs as numbers
+ */
+export function extractCaseIdsFromTest(title: string): number[] {
+	return extractCaseIds(title);
 }
 
 /**
@@ -27,7 +57,5 @@ export function extractCaseId(title: string): number | null {
  * @returns The case ID as a number, or null if not found
  */
 export function extractCaseIdFromTest(title: string): number | null {
-	// Extract from test title only
-	// Tests without TestRail IDs should be skipped
 	return extractCaseId(title);
 }
