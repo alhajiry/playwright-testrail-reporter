@@ -1,5 +1,7 @@
 # Playwright TestRail Reporter
 
+> This is a fork of [bun913/playwright-testrail-reporter](https://github.com/bun913/playwright-testrail-reporter) with additional features and fixes.
+
 ## Overview
 
 This project is a custom reporter for Playwright that integrates test results directly with TestRail. It enables automatic updating of test results in TestRail based on the outcomes of Playwright test runs.
@@ -62,12 +64,6 @@ Multiple case IDs are supported. Place them consecutively at the start of the ti
 When multiple IDs are present, the same test result is reported to **each** case in TestRail.
 
 ## Getting Started
-
-### Installation
-
-```bash
-npm install --save-dev playwright-testrail-reporter
-```
 
 ### Configuration
 
