@@ -38,7 +38,7 @@
 import TestRailReporter from "./reporter";
 import { TestRailReporterOptions } from "./config/index";
 import { TestStatus } from "./api/testrailApi";
-import { extractCaseId, extractCaseIds } from "./helpers/caseExtractor";
+import { extractCaseIds } from "./helpers/caseExtractor";
 import { mapTestStatus } from "./helpers/statusMapper";
 import { formatErrorMessage } from "./helpers/formatter";
 
@@ -55,7 +55,6 @@ export default class PlaywrightTestRailReporter extends TestRailReporter {
 	}
 
 	// Static utility methods to allow direct access to helper functions
-	static extractCaseId = extractCaseId;
 	static extractCaseIds = extractCaseIds;
 	static mapTestStatus = mapTestStatus;
 	static formatErrorMessage = formatErrorMessage;

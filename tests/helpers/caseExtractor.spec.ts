@@ -1,38 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { extractCaseId, extractCaseIdFromTest, extractCaseIds, extractCaseIdsFromTest } from "../../src/helpers/caseExtractor";
+import { extractCaseIds, extractCaseIdsFromTest } from "../../src/helpers/caseExtractor";
 
 describe("caseExtractor", () => {
-  describe("extractCaseId", () => {
-    it("should extract case ID from format: C12345 Description", () => {
-      const result = extractCaseId("C12345 This is a test");
-      expect(result).toBe(12345);
-    });
-
-    it("should extract case ID from format: [C12345] Description", () => {
-      const result = extractCaseId("[C12345] This is a test");
-      expect(result).toBe(12345);
-    });
-
-    it("should return null for title without case ID", () => {
-      const result = extractCaseId("This is a test without ID");
-      expect(result).toBeNull();
-    });
-
-    it("should return null when case ID is not at the beginning", () => {
-      expect(extractCaseId("This has C12345 in the middle")).toBeNull();
-    });
-
-    it("should return null for empty string", () => {
-      expect(extractCaseId("")).toBeNull();
-    });
-  });
-
-  describe("extractCaseIdFromTest", () => {
-    it("should delegate to extractCaseId and return the first case ID", () => {
-      expect(extractCaseIdFromTest("C11111 delete a user with tenant")).toBe(11111);
-    });
-  });
-
   describe("extractCaseIds", () => {
     it("should extract a single C-format ID", () => {
       expect(extractCaseIds("C12345 Single ID test")).toEqual([12345]);
@@ -76,4 +45,4 @@ describe("caseExtractor", () => {
       expect(extractCaseIdsFromTest("C165393 C165376 Verify: empty state when group has no members")).toEqual([165393, 165376]);
     });
   });
-}); 
+});
